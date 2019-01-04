@@ -19,6 +19,7 @@
 
 
 #import <Foundation/Foundation.h>
+#import <JavaScriptCore/JavaScriptCore.h>
 
 @protocol WXExtendCallNativeProtocol <NSObject>
 
@@ -42,6 +43,6 @@
  * @return A value.
  *
  */
-+ (id)excuteCallNative:(NSDictionary *)parameters;
++ (id)excuteCallNative:(JSValue *)value;
 
 @end

@@ -18,9 +18,10 @@
  */
 
 #import <Foundation/Foundation.h>
+#import <JavaScriptCore/JavaScriptCore.h>
 
 @interface WXExtendCallNativeManager : NSObject
 
-+ (id)sendExtendCallNativeEvent:(NSDictionary *)parameters;
++ (id)sendExtendCallNativeEvent:(JSValue *)value;
 + (void)registerExtendCallNative:(NSString *)name withClass:(Class)clazz;
 @end

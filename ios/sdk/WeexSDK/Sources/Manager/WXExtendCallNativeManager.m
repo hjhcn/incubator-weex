@@ -64,14 +64,15 @@
     return NSClassFromString(clazz);
 }
 
-+(id)sendExtendCallNativeEvent:(NSDictionary *)parameters
++(id)sendExtendCallNativeEvent:(JSValue *)value
 {
-    if(parameters[@"className"]){
+    NSDictionary *parameters = [value toDictionary];
+    if(parameters && parameters[@"className"]){
         Class<WXExtendCallNativeProtocol> receiveClass = [self classWithExtendCallNativeName:parameters[@"className"]];
         if(receiveClass && class_conformsToProtocol(receiveClass,@protocol(WXExtendCallNativeProtocol))){
             BOOL receivedItem = [receiveClass checkParameters:parameters];
             if(receivedItem){
-                return [receiveClass excuteCallNative:parameters];
+                return [receiveClass excuteCallNative:value];
             }
         }
     }

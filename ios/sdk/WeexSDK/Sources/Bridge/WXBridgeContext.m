@@ -1135,7 +1135,7 @@ _Pragma("clang diagnostic pop") \
     };
     
     context[@"extendCallNative"] = ^(JSValue *value ) {
-        return [WXBridgeContext extendCallNative:[value toDictionary]];
+        return [WXBridgeContext extendCallNative:value];
     };
 }
 
@@ -1162,10 +1162,10 @@ _Pragma("clang diagnostic pop") \
     }];
 }
 
-+(id)extendCallNative:(NSDictionary *)dict
++(id)extendCallNative:(JSValue *)value
 {
-    if(dict){
-        return [WXExtendCallNativeManager sendExtendCallNativeEvent:dict];
+    if(value){
+        return [WXExtendCallNativeManager sendExtendCallNativeEvent:value];
     }
     return @(-1);
 }
